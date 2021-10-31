@@ -11,3 +11,7 @@ for i in a {
 }
 
 print(arr)
+
+
+output 
+["kEeRtHi", "pRiYa"]
