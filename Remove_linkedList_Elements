@@ -23,3 +23,15 @@ func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
         }
         return nil
     }
+
+//Using recursion
+func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
+        if var newNode = head {
+            if (newNode.val == val) {
+                return removeElements(newNode.next, val)
+            }
+            newNode.next = removeElements(newNode.next, val)
+            return newNode
+        }
+        return nil
+    }
