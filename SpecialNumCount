@@ -1,0 +1,30 @@
+/*
+Count special numbers- which is highest and cannot be formed any high num greater than this
+123 --max formed is 321
+321 -- itself max -- special num
+312 - 321 -- max is formed
+
+
+output -- 1 (321 specialnum)
+*/
+
+var arr = [123,321,312]
+var count = 0
+
+
+for i in arr {
+    let s = Array(String(i))
+    let len = s.count
+    var c = 0
+    for j in stride(from: 1, to: len, by: 1) {
+        if s[j] > s[j-1] {
+            c = c+1  
+            break
+        }
+    }
+    if c == 0 {
+        count = count + 1
+    }
+}
+
+print(count)

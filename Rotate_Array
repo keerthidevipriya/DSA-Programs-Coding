@@ -1,0 +1,11 @@
+func rotate(_ nums: inout [Int], _ k: Int) {
+        let arraySize = nums.count
+        var outputArray = [Int](repeating: 0, count: arraySize)
+        for index in 0..<arraySize {
+            var outputIndex = (index + k) % arraySize
+            outputArray[outputIndex] = nums[index]
+        }
+        for index in 0..<arraySize {
+            nums[index] = outputArray[index]
+        }
+    }

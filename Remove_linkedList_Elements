@@ -1,0 +1,37 @@
+func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
+        if var newNode = head {
+            var outputNodeHead: ListNode? = nil
+            var outputNode: ListNode? = nil
+            while (newNode != nil) {
+                if (newNode.val != val) {
+                    if (outputNodeHead != nil) {
+                        outputNode!.next = newNode
+                        outputNode = outputNode!.next
+                    } else {
+                        outputNodeHead = newNode
+                        outputNode = outputNodeHead
+                    }
+                }
+                if (newNode.next == nil) {
+                    if (outputNode != nil) {
+                        outputNode!.next = nil   
+                    }
+                    return outputNodeHead
+                }
+                newNode = newNode.next ?? ListNode()
+            }
+        }
+        return nil
+    }
+
+//Using recursion
+func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
+        if var newNode = head {
+            if (newNode.val == val) {
+                return removeElements(newNode.next, val)
+            }
+            newNode.next = removeElements(newNode.next, val)
+            return newNode
+        }
+        return nil
+    }
