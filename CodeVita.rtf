@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 import java.lang.*;\
+import java.util.*;\
+\
+/*\
+Question\
+You will be given with 2 strings \
+1. string with numbers\
+2. encrypted string\
+\
+Task is to modify the number string based on the encrypted operations in encrypted string\
+\
+Initially cursor will be at 0 index in number string\
+Operations\
+1. R - move cursor to nextIndex in number string\
+2. L - move cursor to previousIndex in number string\
+3. T - Increment the value of cursor by 1 if value is lessthan 9. Otherwise no.\
+4. D - Decrement the value of cursor by 1 if value is greater than 1. Otherwise no.\
+5. Sn - Swap the value of cursor with n th index value\
+\
+print the updated number string\
+\
+*/\
+public class CodeVita \{\
+\
+    public static void main(String []args)\{\
+        String s = "123456";\
+        String encrypt = "RLTDRRTRS2S1";\
+        String ans = method(s,encrypt);\
+        System.out.println(ans);\
+        //output - 244156\
+    \}\
+\
+    public static String method(String str, String key) \{\
+        int strLen = str.length();\
+        int keyLen = key.length();\
+        char ch[] = str.toCharArray();\
+        int keyIndex = 0, strIndex = 0;\
+        while(keyIndex < keyLen) \{\
+            char c = key.charAt(keyIndex);\
+            if((c == 'R') && (strIndex < strLen)) \{\
+                strIndex++;\
+            \} else if((c == 'L') && (strIndex > 0)) \{\
+                strIndex--;\
+            \} else if(c == 'T') \{\
+                int value = Integer.parseInt(str.charAt(strIndex)+"");\
+                if(value < 9)\
+                    value++;\
+                ch[strIndex] = (char)(value+'0');\
+            \} else if(c == 'D') \{\
+                int value = Integer.parseInt(str.charAt(strIndex)+"");\
+                if(value > 1)\
+                    value--;\
+                ch[strIndex] = (char)(value+'0');\
+            \} else if(c == 'S') \{\
+                int index = Integer.parseInt(key.charAt(keyIndex+1)+"");\
+                char temp = ch[strIndex];\
+                ch[strIndex] = ch[index - 1];\
+                ch[index - 1] = temp;\
+            \}\
+            keyIndex++;\
+        \}\
+        return String.valueOf(ch).toString();\
+    \}\
+\}}
