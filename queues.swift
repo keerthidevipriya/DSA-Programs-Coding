@@ -13,3 +13,12 @@ let t2 = DispatchWorkItem {
 q.sync(execute: t1)
 q.async(execute: t)
 q.sync(execute: t2)
+
+//Output
+/*
+T1
+T2
+Hello Task
+
+First sync tasks will be completed then async tasks
+*/
